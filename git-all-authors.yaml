@@ -1,0 +1,14 @@
+---
+name: Git all authors
+command: |-
+    git log --since={{week}}.weeks --format='%aN' | sort -u
+tags:
+  - git
+descriptions: List all authors within some weeks in current repo
+arguments:
+  - name: week
+    description: starts from how many weeks ago
+    default_value: 4
+author: "Harry Chen"
+author_url: "https://github.com/a00012025"
+shells: []

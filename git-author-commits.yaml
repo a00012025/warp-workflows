@@ -1,0 +1,17 @@
+---
+name: Git commits of an authors
+command: |-
+    glol --since={{week}}.week --author="{{author}}" --regexp-ignore-case --no-merges --reflog
+tags:
+  - git
+descriptions: Show git commits of an authors within given weeks
+arguments:
+  - name: week
+    description: starts from how many weeks ago
+    default_value: 2
+  - name: author
+    description: author's name
+    default_value: harry
+author: "Harry Chen"
+author_url: "https://github.com/a00012025"
+shells: []
