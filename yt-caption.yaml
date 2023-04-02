@@ -1,0 +1,24 @@
+---
+name: Convert youtube to caption
+command: |-
+    download_youtube_audio.sh "{{url}}" "{{dir_name}}" && ffmpeg -i "{{dir_name}}"/audio.mp3 -acodec pcm_s16le -ac 1 -ar 16000 "{{dir_name}}"/audio.wav && ./main -f "{{dir_name}}"/audio.wav -m models/ggml-"{{model}}".bin -l "{{lang}}" -otxt -t 4 | tee "{{dir_name}}"/output.txt
+tags:
+  - whisper
+  - youtube
+descriptions: Download youtube to mp3 and convert it to text using whisper model
+arguments:
+  - name: url
+    description: Youtube URL
+    default_value: https://www.youtube.com/watch?v=L_Guz73e6fw
+  - name: dir_name
+    description: Dir name to save the results
+    default_value: test
+  - name: model
+    description: Model size of whisper, e.g. large or medium
+    default_value: medium
+  - name: lang
+    description: Language to output the caption in
+    default_value: en
+author: "Harry Chen"
+author_url: "https://github.com/a00012025"
+shells: []
