@@ -1,7 +1,7 @@
 ---
 name: Git line stats of all authors
 command: |-
-    git log --since=4.week --format='%aN' | sort -u | while read -r author; do echo -n "$author " && glol --since={{week}}.week --author="$author" --regexp-ignore-case --no-merges --reflog --pretty=tformat: --numstat | awk '{ add += $1; remove += $2 } END { printf "Lines added: %s, Lines removed: %s\n", add, remove }' ; done
+    git log --since=4.week --format='%aN' | sort -u | while read -r author; do echo -n "$author " && glol --since={{week}}.week --author="$author" --regexp-ignore-case --no-merges --reflog --pretty=tformat: --numstat | tr -d '*' | tr -d '|' | awk '{ add += $1; remove += $2 } END { printf "Lines added: %s, Lines removed: %s\n", add, remove }' ; done
 tags:
   - git
 descriptions: List line stats of all authors within some weeks in current repo
